@@ -30,6 +30,24 @@
   padding: 0.5rem;
   border-radius: 12px;
 }
+input {
+  padding: 10px;
+  border: none;
+  border-radius: 12px;
+  margin-left: 5px;
+  outline: none;
+  font-weight: 600;
+}
+button {
+  padding: 10px;
+  border: none;
+  border-radius: 12px;
+  background-color: #b88f0a;
+  color: #fff;
+  cursor: pointer;
+  margin-left: 5px;
+}
+
 @media (min-width: 580px) {
   .expense-item__description {
     align-items: center;
