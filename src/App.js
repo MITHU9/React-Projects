@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import Expenses from "./components/Expenses/Expenses";
 import NewExpense from "./components/NewExpenses/NewExpense";
@@ -31,10 +31,27 @@ let Dummy_Expense = [
 ];
 const App = () => {
   const [expenses, setExpenses] = useState(Dummy_Expense);
+
+  // useEffect(() => {
+  //   fetch("https://api.escuelajs.co/api/v1/products")
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //console.log(data);
+  //       setExpenses(data);
+  //     });
+  // }, []);
+
   const newExpenseObject = (newObject) => {
     const updatedExpenses = [newObject, ...expenses];
     setExpenses(updatedExpenses);
     //console.log(newObject);
+    // fetch("https://api.escuelajs.co/api/v1/products/", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(newObject),
+    // });
   };
   return (
     <div>
