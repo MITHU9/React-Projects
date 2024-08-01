@@ -1,12 +1,15 @@
-import React from "react";
 import "./Expenses.css";
 import ExpenseItem from "./ExpenseItem";
 import Card from "../UI/Card";
-const Expenses = (props) => {
-  //console.log(props.item);
+import { ItemContext } from "../../store/itemStorage";
+import { useContext } from "react";
+const Expenses = () => {
+  const contextObj = useContext(ItemContext);
+  const { item } = contextObj;
+
   return (
     <Card className="expenses">
-      {props.item.map((expense) => (
+      {item.map((expense) => (
         <ExpenseItem
           key={expense.id}
           date={expense.date}

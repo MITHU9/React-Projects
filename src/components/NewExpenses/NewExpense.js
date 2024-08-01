@@ -1,14 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./NewExpense.css";
 import ExpenseForm from "./ExpenseForm";
+import { ItemContext } from "../../store/itemStorage";
 
-const NewExpense = (props) => {
+const NewExpense = () => {
+  const contextObj = useContext(ItemContext);
+  const { addNewExpenses } = contextObj;
+
   const ExpenseFormData = (NewExpenseData) => {
     const expenseData = {
       ...NewExpenseData,
       id: Math.random().toString(),
     };
-    props.addExpenseObject(expenseData);
+    addNewExpenses(expenseData);
     //console.log(expenseData);
   };
   return (

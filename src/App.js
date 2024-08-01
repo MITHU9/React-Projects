@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./App.css";
 import Expenses from "./components/Expenses/Expenses";
 import NewExpense from "./components/NewExpenses/NewExpense";
+import { ItemContext } from "./store/itemStorage";
 
 let Dummy_Expense = [
   {
@@ -29,36 +30,28 @@ let Dummy_Expense = [
     amount: 234.56,
   },
 ];
+
 const App = () => {
   const [expenses, setExpenses] = useState(Dummy_Expense);
 
-  // useEffect(() => {
-  //   fetch("https://api.escuelajs.co/api/v1/products")
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //console.log(data);
-  //       setExpenses(data);
-  //     });
-  // }, []);
-
-  const newExpenseObject = (newObject) => {
-    const updatedExpenses = [newObject, ...expenses];
-    setExpenses(updatedExpenses);
-    //console.log(newObject);
-    // fetch("https://api.escuelajs.co/api/v1/products/", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(newObject),
-    // });
+  const addNewExpenses = (newObject) => {
+    setExpenses((currExpenses) => {
+      return [newObject, ...currExpenses];
+    });
   };
   return (
-    <div>
-      <h2 className="center">Let's Get Started!</h2>
-      <NewExpense addExpenseObject={newExpenseObject} />
-      <Expenses item={expenses} />
-    </div>
+    <ItemContext.Provider
+      value={{
+        item: expenses,
+        addNewExpenses: addNewExpenses,
+      }}
+    >
+      <div>
+        <h2 className="center">Let's Get Started!</h2>
+        <NewExpense />
+        <Expenses />
+      </div>
+    </ItemContext.Provider>
   );
 };
 
